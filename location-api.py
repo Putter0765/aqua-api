@@ -15,7 +15,7 @@ def extract_locations(input_text):
 
 @app.route("/")
 def index():
-    return render_template("https://admin.takkitransport.com/test.php")  # หน้าเว็บหลัก
+    return redirect("https://admin.takkitransport.com/test.php")
 
 @app.route("/extract_locations", methods=["POST"])
 def extract_locations_from_request():
