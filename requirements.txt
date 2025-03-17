@@ -3,4 +3,3 @@ Flask-Cors
 pillow
 pytesseract
 spacy
-en-core-web-sm
