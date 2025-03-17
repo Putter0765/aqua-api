@@ -1,6 +1,13 @@
 #!/bin/bash
-pip install -r requirements.txt  # ติดตั้ง dependencies
-python -m spacy download en_core_web_sm  # ดาวน์โหลดโมเดล Spacy
-python location-api.py &  # รัน location-api.py
-python name-api.py &  # รัน name-api.py
-python ocr-api.py  # รัน OCR API (ตัวสุดท้ายไม่ต้อง &)
+
+# ติดตั้ง Tesseract OCR
+apt-get update && apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev
+
+# ติดตั้ง dependencies
+pip install -r requirements.txt  
+
+# ดาวน์โหลดโมเดล Spacy
+python -m spacy download en_core_web_sm  
+
+# รัน API หลัก (OCR + NLP รวมกัน)
+python app.py  
