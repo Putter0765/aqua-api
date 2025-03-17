@@ -18,7 +18,7 @@ def extract_names(input_text):
 
 @app.route("/")
 def index():
-    return render_template("test.php")  # หน้าเว็บหลัก
+    return render_template("https://admin.takkitransport.com/test.php")  # หน้าเว็บหลัก
 
 @app.route("/extract_names", methods=["POST"])
 def extract_names_from_request():
