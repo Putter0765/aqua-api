@@ -1,14 +1,10 @@
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, request, jsonify
 import spacy
-
-
 from flask_cors import CORS
 
-# โหลดโมเดลที่เทรนแล้ว (หรือโมเดลภาษาอังกฤษทั่วไป)
 nlp = spacy.load("text_model")
 app = Flask(__name__)
-CORS(app)  # อนุญาต CORS ให้กับทุก origin
-
+CORS(app)
 
 # ฟังก์ชันสำหรับดึงชื่อจากข้อความ
 def extract_names(input_text):
@@ -18,7 +14,7 @@ def extract_names(input_text):
 
 @app.route("/")
 def index():
-    return redirect("https://admin.takkitransport.com/test.php")
+    return jsonify({"message": "Name API is running"}), 200  # เปลี่ยนจาก redirect เป็นข้อความ
 
 @app.route("/extract_names", methods=["POST"])
 def extract_names_from_request():
@@ -28,12 +24,8 @@ def extract_names_from_request():
         return jsonify({"error": "Message is required"}), 400
 
     names = extract_names(input_message)
-    # เว้นบรรทัดระหว่างชื่อ
     formatted_names = "\n".join(names)
     return jsonify({"names": formatted_names})
 
-
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-
