@@ -1,4 +1,5 @@
 import os
+import shutil
 from flask import Flask, request, jsonify
 import spacy
 from PIL import Image
@@ -11,6 +12,13 @@ CORS(app)
 
 # โหลดโมเดล NLP
 nlp = spacy.load("text_model")
+
+# ตรวจสอบว่ามี Tesseract OCR หรือไม่
+tesseract_path = shutil.which("tesseract")
+if tesseract_path:
+    pytesseract.pytesseract.tesseract_cmd = tesseract_path
+else:
+    raise EnvironmentError("Tesseract-OCR not found. Install it first.")
 
 # API สำหรับดึงชื่อจากข้อความ
 @app.route("/extract_names", methods=["POST"])
