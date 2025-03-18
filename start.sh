@@ -1,7 +1,4 @@
-#!/bin/bash
-
-# ติดตั้ง Tesseract OCR
-apt-get update && apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev
+#!/bin/ba
 
 # ติดตั้ง dependencies
 pip install -r requirements.txt  
