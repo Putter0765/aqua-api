@@ -19,7 +19,10 @@ def extract_names():
 
     doc = nlp(input_message)
     names = [ent.text for ent in doc.ents if ent.label_ == "PERSON"]
-    return jsonify({"names": names})
+    
+    # คืนค่าชื่อแบบแยกบรรทัด
+    return jsonify({"names": "\n".join(names)})
+
 
 # API สำหรับดึงสถานที่จากข้อความ
 @app.route("/extract_locations", methods=["POST"])
